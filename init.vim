@@ -1,6 +1,5 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
-" source ~/.config/nvim/.vimrc
 
 " Initial_Setup_Instructions:----------------------------------------------{{{1
 " Install vim-plug:
@@ -8,7 +7,7 @@ let &packpath = &runtimepath
 " then use :PlugInstall
 
 " Plugin_support:
-" pip install flake8 mypy yapf
+" pip install neovim flake8 mypy yapf
 " powerline fonts: https://github.com/powerline/fonts
 
 " Themes:
@@ -27,22 +26,14 @@ Plug 'ervandew/supertab'
 Plug 'w0rp/ale'
 Plug 'Chiel92/vim-autoformat'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'sbdchd/vim-run'
 " Plug 'zchee/deoplete-jedi'
 call plug#end()
-
-" Themes:------------------------------------------------------------------{{{1
-" place in the colors directory ~/.config/nvim/colors using curl -o
-" colorscheme badwolf "https://raw.githubusercontent.com/sjl/badwolf/master/colors/badwolf.vim
-
-colorscheme molokai "https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
-highlight cursorline ctermbg=236 ctermfg=none
-highlight colorcolumn ctermbg=darkred
 
 " BASIC SETTNGS:-----------------------------------------------------------{{{1
 
 syntax enable
 set number
-set background=dark
 set list
 set showbreak=↳\ 
 set visualbell
@@ -56,6 +47,21 @@ set softtabstop=4
 set expandtab
 set textwidth=79
 set colorcolumn=+1
+
+" Splits - feels more natural
+set splitbelow
+set splitright
+
+" Themes:------------------------------------------------------------------{{{1
+" place in the colors directory ~/.config/nvim/colors using curl -o
+" colorscheme badwolf "https://raw.githubusercontent.com/sjl/badwolf/master/colors/badwolf.vim
+
+set background=dark
+colorscheme molokai "https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
+highlight cursorline ctermbg=236 ctermfg=none
+highlight colorcolumn ctermbg=darkred
+highlight! link TermCursor Cursor
+highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
 
 " FINDING AND AUTOCOMPLETE:------------------------------------------------{{{1
 
@@ -88,6 +94,12 @@ let g:ale_sign_warning = '⚠'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
+" CtrlP:-------------------------------------------------------------------{{{1
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_match_window = 'bottom,order:ttb'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
 " Virtualenv:--------------------------------------------------------------{{{1
 
 " Figure out the system Python for Neovim.
@@ -102,9 +114,6 @@ endif
 " remap the Leader key:
 let mapleader = ","
 let maplocalleader = "\\"
-
-" vim-autoformat
-noremap <F3> :Autoformat<CR>
 
 " disable the arrow keys:
 " : in NORMAL mode
@@ -144,7 +153,7 @@ nnoremap <leader>[ viw<esc>a]<esc>hbi[<esc>lel
 nnoremap <leader>__ viw<esc>a__<esc>hbi__<esc>lel
 " exit pair(s) to end of line:
 inoremap <c-l> <ESC>A
-" exit nested pair to within parent pair: **NOT WORKING**
+" exit nested pair to within parent pair:
 inoremap <c-k> <ESC>la
 
 "smash escape
@@ -171,8 +180,38 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 inoremap <c-u> <esc>viwUea
 " -all-caps & continue in NORMAL mode
 nnoremap <c-u> viwUea<ESC>
+"
 " - search & highlighting
 nnoremap <silent> <leader>nh :nohl<cr>
+
+" navigate between splits
+" - option + h, j, k, l come out as symbols on mac
+nnoremap ˙ <C-w>h
+nnoremap ∆ <C-w>j
+nnoremap ˚ <C-w>k
+nnoremap ¬ <C-w>l
+
+tnoremap ˙ <C-\><C-n><C-w>h
+tnoremap ∆ <C-\><C-n><C-w>j
+tnoremap ˚ <C-\><C-n><C-w>k
+tnoremap ¬ <C-\><C-n><C-w>l
+
+" vim-autoformat
+nnoremap <F3> :Autoformat<CR>
+
+" vim-run
+nnoremap <F5> :Run<CR>
+
+" Terminal:-----------------------------------------------------------------{{{1
+tnoremap <C-v><Esc> <C-\><C-n>
+
+function! OpenTerm()
+    vsp | te
+    set nonumber
+    startinsert
+endfunction
+
+nnoremap <leader>te :call OpenTerm()<cr>
 
 " Folding:-----------------------------------------------------------------{{{1
 
