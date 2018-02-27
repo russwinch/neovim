@@ -33,6 +33,7 @@ call plug#end()
 " BASIC SETTNGS:-----------------------------------------------------------{{{1
 
 syntax enable
+set shortmess+=Iw
 set number
 set list
 set showbreak=↳\ 
