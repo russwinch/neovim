@@ -27,6 +27,7 @@ Plug 'w0rp/ale'
 Plug 'Chiel92/vim-autoformat'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sbdchd/vim-run'
+Plug 'tpope/vim-fugitive'
 " Plug 'zchee/deoplete-jedi'
 call plug#end()
 
@@ -178,9 +179,9 @@ nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 "
 " -all-caps & continue in INSERT mode
-inoremap <c-u> <esc>viwUea
+" inoremap <c-u> <esc>viwUea
 " -all-caps & continue in NORMAL mode
-nnoremap <c-u> viwUea<ESC>
+" nnoremap <c-u> viwUea<ESC>
 "
 " - search & highlighting
 nnoremap <silent> <leader>nh :nohl<cr>
