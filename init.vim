@@ -28,6 +28,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sbdchd/vim-run'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 " Plug 'zchee/deoplete-jedi'
 call plug#end()
 
@@ -35,7 +36,6 @@ call plug#end()
 
 syntax enable
 set shortmess+=Iw
-set number
 set list
 set showbreak=↳\ 
 set visualbell
@@ -53,6 +53,17 @@ set colorcolumn=+1
 " Splits - feels more natural
 set splitbelow
 set splitright
+
+" LINE NUMERING:-----------------------------------------------------------{{{1
+
+" set number
+:set number relativenumber
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
 
 " Themes:------------------------------------------------------------------{{{1
 " place in the colors directory ~/.config/nvim/colors using curl -o
@@ -114,8 +125,8 @@ endif
 " Remappings:--------------------------------------------------------------{{{1
 
 " remap the Leader key:
-let mapleader = ","
-let maplocalleader = "\\"
+" let mapleader = ","
+" let maplocalleader = "\\"
 
 " disable the arrow keys:
 " : in NORMAL mode
@@ -159,7 +170,7 @@ inoremap <c-l> <ESC>A
 inoremap <c-k> <ESC>la
 
 "smash escape
-inoremap jk <ESC>
+" inoremap jk <ESC>
 
 " insert blank row
 nnoremap <leader>r o<ESC>
@@ -170,8 +181,8 @@ nnoremap <leader>n <ESC>:tabn<CR>
 nnoremap <leader>p <ESC>:tabp<CR>
 
 " use relative numbering
-" nnoremap <silent> <leader>u <ESC>:set relativenumber!<CR><ESC>
-" inoremap <silent> <leader>u <ESC>:set relativenumber!<CR><ESC>i
+nnoremap <silent> <leader>u <ESC>:set relativenumber!<CR><ESC>
+inoremap <silent> <leader>u <ESC>:set relativenumber!<CR><ESC>i
 
 " open vimrc in a split for a quick edit
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
@@ -208,7 +219,7 @@ nnoremap <F5> :Run<CR>
 tnoremap <C-v><Esc> <C-\><C-n>
 
 function! OpenTerm()
-    vsp | te
+    88vs | te
     set nonumber
     startinsert
 endfunction
