@@ -7,7 +7,7 @@ let &packpath = &runtimepath
 " then use :PlugInstall
 
 " Plugin_support:
-" pip install neovim flake8 mypy yapf
+" pip3 install neovim flake8 yapf
 " powerline fonts: https://github.com/powerline/fonts
 
 " Themes:
@@ -98,7 +98,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Ale:---------------------------------------------------------------------{{{1
 
-let g:ale_linters = {'python': ['flake8', 'mypy']}
+let g:ale_linters = {'python': ['flake8']}
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
 
@@ -218,13 +218,21 @@ nnoremap <F5> :Run<CR>
 " Terminal:-----------------------------------------------------------------{{{1
 tnoremap <C-v><Esc> <C-\><C-n>
 
-function! OpenTerm()
+function! OpenVertTerm()
     88vs | te
     set nonumber
     startinsert
 endfunction
 
-nnoremap <leader>te :call OpenTerm()<cr>
+nnoremap <leader>tev :call OpenVertTerm()<cr>
+
+function! OpenHorzTerm()
+    sp | te
+    set nonumber
+    startinsert
+endfunction
+
+nnoremap <leader>teh :call OpenHorzTerm()<cr>
 
 " Folding:-----------------------------------------------------------------{{{1
 
