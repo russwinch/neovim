@@ -73,6 +73,7 @@ set background=dark
 colorscheme molokai "https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
 highlight cursorline ctermbg=236 ctermfg=none
 highlight colorcolumn ctermbg=darkred
+highlight Visual cterm=bold ctermbg=247 ctermfg=NONE
 highlight! link TermCursor Cursor
 highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
 
