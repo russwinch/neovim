@@ -6,9 +6,10 @@ let &packpath = &runtimepath
 " curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 " then use :PlugInstall
 
-" Plugin_support:
+" Plugin_Support:
 " pip3 install neovim flake8 yapf
 " powerline fonts: https://github.com/powerline/fonts
+" universal c-tags: brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
 " Themes:
 " Create a colors directory ~/.config/nvim/colors
@@ -29,6 +30,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sbdchd/vim-run'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'ludovicchabant/vim-gutentags'
 " Plug 'zchee/deoplete-jedi'
 call plug#end()
 
@@ -107,6 +109,10 @@ let g:ale_sign_warning = '⚠'
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+" set statusline+=%{gutentags#statusline()}
+
+" Gutentags:---------------------------------------------------------------
+let g:gutentags_cache_dir = '~/.gutentags/'
 
 " CtrlP:-------------------------------------------------------------------{{{1
 let g:ctrlp_map = '<c-p>'
