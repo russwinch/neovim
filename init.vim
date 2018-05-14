@@ -186,11 +186,17 @@ inoremap <c-k> <ESC>la
 nnoremap <leader>r o<ESC>
 nnoremap <leader>R O<ESC>
 
-" navigating between vim buffers and tabs
-nnoremap <leader>n <ESC>:bn<CR>
-nnoremap <leader>p <ESC>:bp<CR>
-nnoremap <leader>tn <ESC>:tabn<CR>
-nnoremap <leader>tp <ESC>:tabp<CR>
+" navigating between vim tabs and buffers
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>n :tabn<CR>
+nnoremap <leader>p :tabp<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
+" delete buffer
+nnoremap <leader>bd :bn<CR>:bd#<CR>
+
+" navigate between buffers
+nnoremap <leader>b :CtrlPBuffer<cr>
 
 " use relative numbering
 nnoremap <silent> <leader>u <ESC>:set relativenumber!<CR><ESC>
@@ -207,10 +213,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " nnoremap <c-u> viwUea<ESC>
 "
 " - search & highlighting
-nnoremap <silent> <leader>nh :nohl<cr>
-
-" navigate between buffers
-nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <silent> <leader>hn :nohl<cr>
 
 " navigate between splits
 " - option + h, j, k, l come out as symbols on mac
@@ -239,7 +242,10 @@ nnoremap <leader>c "*yy
 nnoremap <leader>v "*p
 nnoremap <leader>V "*P
 
-
+" snippets
+inoremap <leader>td # TODO-RW: 
+nnoremap <leader>td o# TODO-RW: 
+nnoremap <leader>st Oimport pdb; pdb.set_trace()<ESC>
 "
 " Terminal:-----------------------------------------------------------------{{{1
 tnoremap <C-v><Esc> <C-\><C-n>
