@@ -10,6 +10,7 @@ let &packpath = &runtimepath
 " pip3 install neovim flake8 yapf
 " powerline fonts: https://github.com/powerline/fonts
 " universal c-tags: brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+" create a folder for tags: ~/.gutentags/
 
 " Themes:
 " Create a colors directory ~/.config/nvim/colors
@@ -20,6 +21,7 @@ let &packpath = &runtimepath
 call plug#begin()
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
@@ -111,7 +113,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " set statusline+=%{gutentags#statusline()}
 
-" Gutentags:---------------------------------------------------------------
+" Gutentags:---------------------------------------------------------------{{{1
 let g:gutentags_cache_dir = '~/.gutentags/'
 
 " CtrlP:-------------------------------------------------------------------{{{1
