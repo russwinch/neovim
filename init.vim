@@ -33,6 +33,7 @@ Plug 'sbdchd/vim-run'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'https://github.com/mileszs/ack.vim'
 " Plug 'zchee/deoplete-jedi'
 call plug#end()
 
@@ -54,9 +55,10 @@ set expandtab
 set textwidth=79
 set colorcolumn=+1
 
-" Splits - feels more natural
+" Splits and buffers - feels more natural
 set splitbelow
 set splitright
+" set hidden
 
 " LINE NUMERING:-----------------------------------------------------------{{{1
 
@@ -120,6 +122,7 @@ let g:gutentags_cache_dir = '~/.gutentags/'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_extensions = ['tag']
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 " Virtualenv:--------------------------------------------------------------{{{1
@@ -185,9 +188,17 @@ inoremap <c-k> <ESC>la
 nnoremap <leader>r o<ESC>
 nnoremap <leader>R O<ESC>
 
-" navigating between vim tabs
-nnoremap <leader>n <ESC>:tabn<CR>
-nnoremap <leader>p <ESC>:tabp<CR>
+" navigating between vim tabs and buffers
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>n :tabn<CR>
+nnoremap <leader>p :tabp<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
+" delete buffer
+nnoremap <leader>bd :bn<CR>:bd#<CR>
+
+" navigate between buffers
+nnoremap <leader>b :CtrlPBuffer<cr>
 
 " use relative numbering
 nnoremap <silent> <leader>u <ESC>:set relativenumber!<CR><ESC>
@@ -204,7 +215,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " nnoremap <c-u> viwUea<ESC>
 "
 " - search & highlighting
-nnoremap <silent> <leader>nh :nohl<cr>
+nnoremap <silent> <leader>hn :nohl<cr>
 
 " navigate between splits
 " - option + h, j, k, l come out as symbols on mac
@@ -224,6 +235,20 @@ nnoremap <F3> :Autoformat<CR>
 " vim-run
 nnoremap <F5> :Run<CR>
 
+" copy and paste
+vnoremap <leader>c "*y
+inoremap <leader>c "*yy
+inoremap <leader>v <ESC>"*pa
+inoremap <leader>V <ESC>"*Pa
+nnoremap <leader>c "*yy
+nnoremap <leader>v "*p
+nnoremap <leader>V "*P
+
+" snippets
+inoremap <leader>td # TODO-RW: 
+nnoremap <leader>td o# TODO-RW: 
+nnoremap <leader>st Oimport pdb; pdb.set_trace()<ESC>
+"
 " Terminal:-----------------------------------------------------------------{{{1
 tnoremap <C-v><Esc> <C-\><C-n>
 
